@@ -13,7 +13,7 @@ export function ButtonHabit({ checked, onClick }: ButtonHabitProps) {
 
   return (
     <Button
-      onClick={onClick}
+      onClick={checked ? undefined : onClick}
       iconLeft={checked ? CheckCircle : Check}
       className={className}
       disabled={checked}

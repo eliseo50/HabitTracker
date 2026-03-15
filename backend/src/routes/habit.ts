@@ -13,7 +13,7 @@ const router: Router = Router();
 router.post('/', createHabit);
 router.get('/', getHabits);
 router.get('/:id', getHabitById);
-router.put('/:id', updateHabit);
+router.patch('/:id', updateHabit);
 router.post('/:id/checkin', checkInHabit);
 router.delete('/:id', deleteHabit);
 

@@ -15,7 +15,7 @@ export const loadHabits = createAsyncThunk("habits/loadHabits", async () => {
 
 export const addHabit = createAsyncThunk(
   "habits/addHabit",
-  async (habit: Omit<Habit, "_id" | "userId" | "createdAt" | "updatedAt" | "isChecked">) => {
+  async (habit: Pick<Habit, "name" | "description" | "color" | "icon" | "userId">) => {
     const response = await fetch(`${API_URL}/habits/`, {
       method: "POST",
       headers: {
@@ -34,11 +34,41 @@ export const checkHabit = createAsyncThunk(
   "habits/checkHabit",
   async (id: string) => {
     const response = await fetch(`${API_URL}/habits/${id}/checkin`, {
-      method: "POST",
+      method: "POST"
     });
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to check habit");
+    }
+    return (await response.json()) as Habit;
+  }
+);
+
+export const deleteHabit = createAsyncThunk(
+  "habits/deleteHabit",
+  async (id: string) => {
+    const response = await fetch(`${API_URL}/habits/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete habit");
+    }
+    return id;
+  }
+);
+
+export const updateHabit = createAsyncThunk(
+  "habits/updateHabit",
+  async ({ id, updates }: { id: string; updates: Partial<Habit> }) => {
+    const response = await fetch(`${API_URL}/habits/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updates),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to update habit");
     }
     return (await response.json()) as Habit;
   }
@@ -60,7 +90,6 @@ export const habitSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Load Habits
       .addCase(loadHabits.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -73,16 +102,23 @@ export const habitSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || "Error al cargar los hábitos";
       })
-      // Add Habit
       .addCase(addHabit.fulfilled, (state, action) => {
         state.habits.push(action.payload);
       })
-      // Check Habit
+      .addCase(updateHabit.fulfilled, (state, action) => {
+        const index = state.habits.findIndex((h) => h._id === action.payload._id);
+        if (index !== -1) {
+          state.habits[index] = action.payload;
+        }
+      })
       .addCase(checkHabit.fulfilled, (state, action) => {
         const index = state.habits.findIndex((h) => h._id === action.payload._id);
         if (index !== -1) {
           state.habits[index] = action.payload;
         }
+      })
+      .addCase(deleteHabit.fulfilled, (state, action) => {
+        state.habits = state.habits.filter((h) => h._id !== action.payload);
       });
   },
 });
