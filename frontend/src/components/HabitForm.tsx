@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { Button } from "./Button";
 import { cn } from "../utils/merge";
 import type { Habit } from "../types/habit";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addHabit, updateHabit } from "../store/slices/habitSlice";
 import { COLORS, ICONS } from "../utils/constants";
 
@@ -12,11 +12,10 @@ interface HabitFormProps {
   title: string;
 }
 
-const USER_ID = "65f32a8f4e2b1a001d8e9f1a"; // Temporarily hardcoded until auth is implemented
-
 function HabitForm({ initialData, title }: HabitFormProps) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
   const [selectedColor, setSelectedColor] = useState(
     initialData?.color || COLORS.Blue.value,
   );
@@ -26,6 +25,8 @@ function HabitForm({ initialData, title }: HabitFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) return;
+
     const formData = new FormData(e.target as HTMLFormElement);
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
@@ -35,7 +36,7 @@ function HabitForm({ initialData, title }: HabitFormProps) {
       description,
       color: selectedColor,
       icon: selectedIcon,
-      userId: USER_ID,
+      userId: user.id,
     };
 
     try {

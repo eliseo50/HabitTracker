@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Plus, Loader2 } from "lucide-react";
+import { Plus, Loader2, LogOut } from "lucide-react";
 import { useNavigate } from "react-router";
 import { Button } from "../components/Button";
 import { HabitCard } from "../components/HabitCard";
@@ -9,15 +9,22 @@ import {
   checkHabit,
   deleteHabit,
 } from "../store/slices/habitSlice";
+import { logout } from "../store/slices/authSlice";
 
 function Home() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { habits, loading, error } = useAppSelector((state) => state.habits);
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(loadHabits());
   }, [dispatch]);
+
+  const handleLogout = async () => {
+    await dispatch(logout());
+    navigate("/login");
+  };
 
   const handleComplete = (id: string) => {
     dispatch(checkHabit(id));
@@ -34,11 +41,27 @@ function Home() {
   };
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center p-8 gap-8">
-      <div className="flex flex-col items-center gap-4">
-        <h1 className="text-4xl font-bold text-slate-950">Habit Tracker</h1>
-        <Button iconRight={Plus} onClick={() => navigate("/new")}>
-          Crear Hábito
-        </Button>
+      <div className="w-full max-w-6xl flex justify-between items-center">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-4xl font-bold text-slate-950 text-left">Habit Tracker</h1>
+          {user && (
+            <p className="text-slate-500 font-medium italic">
+              Hola, {user.username}
+            </p>
+          )}
+        </div>
+        <div className="flex gap-3">
+          <Button
+            variant="secondary"
+            iconRight={LogOut}
+            onClick={handleLogout}
+          >
+            Cerrar Sesión
+          </Button>
+          <Button iconRight={Plus} onClick={() => navigate("/new")}>
+            Crear Hábito
+          </Button>
+        </div>
       </div>
 
       {loading && (

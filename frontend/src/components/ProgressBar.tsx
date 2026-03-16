@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { TargetMarker } from "./TargetMarker";
 
 interface MultiTargetProgressBarProps {
   value: number;
@@ -45,18 +46,18 @@ export function ProgressBar({
   );
   return (
     <div className="w-full mt-4">
-      <div className="relative h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+      <div className="relative h-2 w-full bg-slate-100 rounded-full">
         <div
-          className={`h-full transition-all duration-500 ease-out ${currentColor}`}
+          className={`h-full transition-all duration-500 ease-out ${currentColor} rounded-full`}
           style={{ width: `${percentage}%` }}
         />
 
-        {targetPercentages.map((targetPercentage) => {
+        {targetPercentages.map((targetPercentage, index) => {
           return (
-            <div
+            <TargetMarker
               key={targetPercentage}
-              className="absolute top-0 bottom-0 w-0.75 bg-white border-l border-r border-slate-600"
-              style={{ left: `${targetPercentage}%` }}
+              percentage={targetPercentage}
+              label={targets[index].toFixed(0)}
             />
           );
         })}

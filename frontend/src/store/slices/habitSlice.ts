@@ -6,7 +6,9 @@ import type { HabitState } from "./HabitState";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const loadHabits = createAsyncThunk("habits/loadHabits", async () => {
-  const response = await fetch(`${API_URL}/habits/`);
+  const response = await fetch(`${API_URL}/habits/`, {
+    credentials: "include",
+  });
   if (!response.ok) {
     throw new Error("Failed to load habits");
   }
@@ -15,33 +17,37 @@ export const loadHabits = createAsyncThunk("habits/loadHabits", async () => {
 
 export const addHabit = createAsyncThunk(
   "habits/addHabit",
-  async (habit: Pick<Habit, "name" | "description" | "color" | "icon" | "userId">) => {
+  async (
+    habit: Pick<Habit, "name" | "description" | "color" | "icon" | "userId">,
+  ) => {
     const response = await fetch(`${API_URL}/habits/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(habit),
+      credentials: "include",
     });
     if (!response.ok) {
       throw new Error("Failed to add habit");
     }
     return (await response.json()) as Habit;
-  }
+  },
 );
 
 export const checkHabit = createAsyncThunk(
   "habits/checkHabit",
   async (id: string) => {
     const response = await fetch(`${API_URL}/habits/${id}/checkin`, {
-      method: "POST"
+      method: "POST",
+      credentials: "include",
     });
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.message || "Failed to check habit");
     }
     return (await response.json()) as Habit;
-  }
+  },
 );
 
 export const deleteHabit = createAsyncThunk(
@@ -49,12 +55,13 @@ export const deleteHabit = createAsyncThunk(
   async (id: string) => {
     const response = await fetch(`${API_URL}/habits/${id}`, {
       method: "DELETE",
+      credentials: "include",
     });
     if (!response.ok) {
       throw new Error("Failed to delete habit");
     }
     return id;
-  }
+  },
 );
 
 export const updateHabit = createAsyncThunk(
@@ -66,12 +73,13 @@ export const updateHabit = createAsyncThunk(
         "Content-Type": "application/json",
       },
       body: JSON.stringify(updates),
+      credentials: "include",
     });
     if (!response.ok) {
       throw new Error("Failed to update habit");
     }
     return (await response.json()) as Habit;
-  }
+  },
 );
 
 const initialState: HabitState = {
@@ -119,7 +127,15 @@ export const habitSlice = createSlice({
       })
       .addCase(deleteHabit.fulfilled, (state, action) => {
         state.habits = state.habits.filter((h) => h._id !== action.payload);
-      });
+      })
+      .addMatcher(
+        (action) => action.type === "auth/logout/fulfilled",
+        (state) => {
+          state.habits = [];
+          state.loading = false;
+          state.error = null;
+        },
+      );
   },
 });
 
