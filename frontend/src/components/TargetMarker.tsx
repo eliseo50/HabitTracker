@@ -1,4 +1,4 @@
-import { ToolTip } from "./Tooltip";
+import { ToolTip } from "./ToolTip";
 
 export function TargetMarker({
   percentage,
