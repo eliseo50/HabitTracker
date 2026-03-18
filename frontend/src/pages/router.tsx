@@ -4,7 +4,7 @@ import NewHabit from "./NewHabit";
 import EditHabit from "./EditHabit";
 import Login from "./Login";
 import Register from "./Register";
-import { ProtectedRoute } from "../components/ProtectedRoute";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {

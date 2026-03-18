@@ -1,15 +1,11 @@
 import { useEffect } from "react";
 import { Plus, Loader2, LogOut } from "lucide-react";
 import { useNavigate } from "react-router";
-import { Button } from "../components/Button";
-import { HabitCard } from "../components/HabitCard";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import {
-  loadHabits,
-  checkHabit,
-  deleteHabit,
-} from "../store/slices/habitSlice";
-import { logout } from "../store/slices/authSlice";
+import { Button } from "@/components/Button";
+import { HabitCard } from "@/components/HabitCard";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { loadHabits, checkHabit, deleteHabit } from "@/store/slices/habitSlice";
+import { logout } from "@/store/slices/authSlice";
 
 function Home() {
   const dispatch = useAppDispatch();
@@ -43,7 +39,9 @@ function Home() {
     <div className="min-h-screen bg-slate-50 flex flex-col items-center p-8 gap-8">
       <div className="w-full max-w-6xl flex justify-between items-center">
         <div className="flex flex-col gap-1">
-          <h1 className="text-4xl font-bold text-slate-950 text-left">Habit Tracker</h1>
+          <h1 className="text-4xl font-bold text-slate-950 text-left">
+            Habit Tracker
+          </h1>
           {user && (
             <p className="text-slate-500 font-medium italic">
               Hola, {user.username}
@@ -51,11 +49,7 @@ function Home() {
           )}
         </div>
         <div className="flex gap-3">
-          <Button
-            variant="secondary"
-            iconRight={LogOut}
-            onClick={handleLogout}
-          >
+          <Button variant="secondary" iconRight={LogOut} onClick={handleLogout}>
             Cerrar Sesión
           </Button>
           <Button iconRight={Plus} onClick={() => navigate("/new")}>

@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import habitRoute from "./routes/habit.js";
 import authRoute from "./routes/auth.js";
-import { protectedRoute } from "./middleware/protected.js";
+import { protectedRoute } from "./middleware/protectedRoute.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config({ path: "../.env" });

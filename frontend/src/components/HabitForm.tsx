@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "./Button";
-import { cn } from "../utils/merge";
-import type { Habit } from "../types/habit";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { addHabit, updateHabit } from "../store/slices/habitSlice";
-import { COLORS, ICONS } from "../utils/constants";
+import { cn } from "@/utils/merge";
+import type { Habit } from "@/types/habit";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addHabit, updateHabit } from "@/store/slices/habitSlice";
+import { COLORS, ICONS } from "@/utils/constants";
 
 interface HabitFormProps {
   initialData?: Partial<Habit>;

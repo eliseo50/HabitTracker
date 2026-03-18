@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Button } from "../components/Button";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { register, clearError } from "../store/slices/authSlice";
+import { Button } from "@/components/Button";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { register, clearError } from "@/store/slices/authSlice";
 import { useEffect } from "react";
 
 function Register() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { loading, error, user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { loading, error, user, isAuthenticated } = useAppSelector(
+    (state) => state.auth,
+  );
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Button } from "../components/Button";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { login, clearError } from "../store/slices/authSlice";
+import { Button } from "@/components/Button";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { login, clearError } from "@/store/slices/authSlice";
 
 function Login() {
   const navigate = useNavigate();

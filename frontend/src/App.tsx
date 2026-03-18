@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { RouterProvider } from "react-router";
-import { router } from "./pages/router";
-import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { initializeAuth } from "./store/slices/authSlice";
+import { router } from "@/pages/router";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { initializeAuth } from "@/store/slices/authSlice";
 
 function App() {
   const dispatch = useAppDispatch();

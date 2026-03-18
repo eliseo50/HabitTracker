@@ -1,11 +1,11 @@
 import { Router } from "express";
+import { protectedRoute } from "@/middleware/protectedRoute.js";
 import {
-  register,
-  login,
   getSession,
+  login,
   logout,
-} from "../controllers/authController.js";
-import { protectedRoute } from "../middleware/protected.js";
+  register,
+} from "@/controllers/auth/index.js";
 
 const router: Router = Router();
 

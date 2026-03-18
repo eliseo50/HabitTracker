@@ -2,9 +2,9 @@ import { Pencil, Trash2 } from "lucide-react";
 import { ButtonHabit } from "./ButtonHabit";
 import { ProgressBar } from "./ProgressBar";
 
-import type { Habit } from "../types/habit";
+import type { Habit } from "@/types/habit";
 import { useEffect, useState } from "react";
-import { ICONS } from "../utils/constants";
+import { ICONS } from "@/utils/constants";
 
 interface HabitCardProps {
   habit: Habit;

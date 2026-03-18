@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
-import { useAppSelector } from "../store/hooks";
-import HabitForm from "../components/HabitForm";
+import { useAppSelector } from "@/store/hooks";
+import HabitForm from "@/components/HabitForm";
 
 function EditHabit() {
   const { id } = useParams();

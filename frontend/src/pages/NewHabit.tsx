@@ -1,4 +1,4 @@
-import HabitForm from "../components/HabitForm";
+import HabitForm from "@/components/HabitForm";
 
 function NewHabit() {
   return (

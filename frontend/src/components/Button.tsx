@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { type LucideIcon } from "lucide-react";
-import { cn } from "../utils/merge";
+import { cn } from "@/utils/merge";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;

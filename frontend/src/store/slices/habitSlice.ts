@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { Habit } from "../../types/habit";
+import type { Habit } from "@/types/habit";
 import type { HabitState } from "./HabitState";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -114,13 +114,17 @@ export const habitSlice = createSlice({
         state.habits.push(action.payload);
       })
       .addCase(updateHabit.fulfilled, (state, action) => {
-        const index = state.habits.findIndex((h) => h._id === action.payload._id);
+        const index = state.habits.findIndex(
+          (h) => h._id === action.payload._id,
+        );
         if (index !== -1) {
           state.habits[index] = action.payload;
         }
       })
       .addCase(checkHabit.fulfilled, (state, action) => {
-        const index = state.habits.findIndex((h) => h._id === action.payload._id);
+        const index = state.habits.findIndex(
+          (h) => h._id === action.payload._id,
+        );
         if (index !== -1) {
           state.habits[index] = action.payload;
         }

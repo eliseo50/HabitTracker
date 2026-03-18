@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { AuthState, User } from "../../types/auth";
+import type { AuthState, User } from "@/types/auth";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
