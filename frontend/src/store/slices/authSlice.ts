@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { AuthState, User } from "@/types/auth";
 
-const API_URL = "/api" + import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL + "/api";
 
 export const login = createAsyncThunk(
   "auth/login",
