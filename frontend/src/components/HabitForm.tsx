@@ -31,6 +31,7 @@ function HabitForm({ initialData, title }: HabitFormProps) {
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
 
+    console.log(user);
     const habitData = {
       name,
       description,
