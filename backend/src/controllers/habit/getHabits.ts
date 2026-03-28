@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import type { AuthRequest } from "@/types/AuthRequest.js";
-import { Habit } from "@/models/Habit.js";
-import { getHabitWithValidatedStreak } from "@/utils/getIsValidStreak.js";
+import type { AuthRequest } from "#/types/AuthRequest.js";
+import { Habit } from "#/models/Habit.js";
+import { getHabitWithValidatedStreak } from "#/utils/getIsValidStreak.js";
 
 export const getHabits = async (req: Request, res: Response) => {
   const authReq = req as AuthRequest;

@@ -1,4 +1,4 @@
-import type { IHabit } from "@/types/IHabit.js";
+import type { IHabit } from "#/types/IHabit.js";
 import { normalizeDate } from "./normalizeDate.js";
 
 export const getIsValidStreak = (lastCompleted: Date | null): boolean => {

@@ -6,8 +6,8 @@ import {
   getHabitById,
   getHabits,
   updateHabit,
-} from "@/controllers/habit/index.js";
-import { isOwner } from "@/middleware/isOwner.js";
+} from "#/controllers/habit/index.js";
+import { isOwner } from "#/middleware/isOwner.js";
 
 const router: Router = Router();
 
