@@ -10,7 +10,7 @@ export const loadHabits = createAsyncThunk("habits/loadHabits", async () => {
     credentials: "include",
   });
   if (!response.ok) {
-    throw new Error("Failed to load habits");
+    throw new Error("Failed to load habits.");
   }
   return (await response.json()) as Habit[];
 });
