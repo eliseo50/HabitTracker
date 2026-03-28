@@ -1,9 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "imports": {
-    "#/*": "./src/*"
-  },
   "description": "",
   "main": "index.js",
   "type": "module",
