@@ -14,7 +14,7 @@ export const checkInHabit = async (req: Request, res: Response) => {
       : null;
 
     if (lastCompleted && lastCompleted.getTime() === today.getTime()) {
-      return res.status(400).json({ message: "Habit already completed today" });
+      return res.status(200).json(habit);
     }
 
     habit.currentStreak = getNewStreak(lastCompleted, habit.currentStreak);

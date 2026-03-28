@@ -123,7 +123,7 @@ export const habitSlice = createSlice({
       })
       .addCase(checkHabit.fulfilled, (state, action) => {
         const index = state.habits.findIndex(
-          (h) => h._id === action.payload._id,
+          (habit) => habit._id === action.payload._id,
         );
         if (index !== -1) {
           state.habits[index] = action.payload;
