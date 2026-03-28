@@ -1,5 +1,5 @@
-import { Habit } from "#/models/Habit.js";
-import { getIsOwner } from "#/utils/getIsOwner.js";
+import { Habit } from "../models/Habit.js";
+import { getIsOwner } from "../utils/getIsOwner.js";
 import type { Request, Response, NextFunction } from "express";
 
 export const isOwner = async (

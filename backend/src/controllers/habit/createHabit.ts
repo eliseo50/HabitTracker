@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import type { AuthRequest } from "#/types/AuthRequest.js";
-import { Habit } from "#/models/Habit.js";
+import type { AuthRequest } from "../../types/AuthRequest.js";
+import { Habit } from "../../models/Habit.js";
 
 export const createHabit = async (req: Request, res: Response) => {
   const authReq = req as AuthRequest;

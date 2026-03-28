@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import type { OwnershipRequest } from "#/types/AuthRequest.js";
-import { Habit } from "#/models/Habit.js";
+import type { OwnershipRequest } from "../../types/AuthRequest.js";
+import { Habit } from "../../models/Habit.js";
 
 export const deleteHabit = async (req: Request, res: Response) => {
   const habitReq = req as OwnershipRequest;

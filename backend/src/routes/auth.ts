@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { protectedRoute } from "#/middleware/protectedRoute.js";
+import { protectedRoute } from "../middleware/protectedRoute.js";
 import {
   getSession,
   login,

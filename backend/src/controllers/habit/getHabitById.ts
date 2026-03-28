@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import type { OwnershipRequest } from "#/types/AuthRequest.js";
-import { getHabitWithValidatedStreak } from "#/utils/getIsValidStreak.js";
+import type { OwnershipRequest } from "../../types/AuthRequest.js";
+import { getHabitWithValidatedStreak } from "../../utils/getIsValidStreak.js";
 
 export const getHabitById = async (req: Request, res: Response) => {
   const habitReq = req as OwnershipRequest;
