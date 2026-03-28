@@ -39,8 +39,8 @@ function Register() {
 
     try {
       await dispatch(register({ username, password })).unwrap();
-    } catch (err) {
-      console.error("Registration failed:", err);
+    } catch {
+      console.error("Registration failed");
     }
   };
 

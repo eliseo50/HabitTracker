@@ -48,8 +48,8 @@ function HabitForm({ initialData, title }: HabitFormProps) {
         await dispatch(addHabit(habitData)).unwrap();
       }
       navigate("/");
-    } catch (error) {
-      console.error("Failed to save habit:", error);
+    } catch {
+      console.error("Failed to save habit:");
     }
   };
 

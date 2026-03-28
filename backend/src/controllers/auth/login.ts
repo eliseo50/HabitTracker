@@ -6,7 +6,8 @@ import type { Request, Response } from "express";
 export async function login(req: Request, res: Response) {
   try {
     if (req.cookies.session_token) {
-      return res.status(400).json({ message: "Already logged in" });
+      // return cookie
+      return res.status(200).json({ user: req.user });
     }
 
     const { username, password } = req.body;
@@ -36,7 +37,7 @@ export async function login(req: Request, res: Response) {
     res.cookie("session_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 

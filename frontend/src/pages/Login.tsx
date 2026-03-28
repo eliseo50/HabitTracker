@@ -16,8 +16,8 @@ function Login() {
     try {
       await dispatch(login({ username, password })).unwrap();
       navigate("/");
-    } catch (err) {
-      console.error("Login failed:", err);
+    } catch {
+      console.error("Login failed");
     }
   };
 

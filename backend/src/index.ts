@@ -6,8 +6,11 @@ import habitRoute from "./routes/habit.js";
 import authRoute from "./routes/auth.js";
 import { protectedRoute } from "./middleware/protectedRoute.js";
 import cookieParser from "cookie-parser";
+import dns from "node:dns/promises";
 
 dotenv.config({ path: "../.env" });
+
+dns.setServers(["1.1.1.1"]);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
